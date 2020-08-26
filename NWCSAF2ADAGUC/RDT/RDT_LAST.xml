@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration>
+    
+<!-- Layer RDT configuration -->  
+  
+<Legend name="RDTlines" type="interval" tickinterval="15">
+    
+    </Legend>
+
+<Style name="RDTstyle0">
+    <Legend fixed="true">RDTlines</Legend>
+    <FeatureInterval match="00004.*" matchid="#code"  fillcolor="#0000FF55" label="Decaying            "/>
+    <FeatureInterval match="00003.*" matchid="#code" fillcolor="#8737EE55" label="Maturity            "/>
+    <FeatureInterval match="00002.*" matchid="#code" fillcolor="#FF000055" label="Growing            "/>
+    <FeatureInterval match="00001.*" matchid="#code" fillcolor="#FF990055" label="Triggering from Split"/>
+    <FeatureInterval match="00000.*" matchid="#code" fillcolor="#FFFF0055" label="Trigering            "/>
+    
+    <NameMapping name="nearest"   title="RDT CELLS Level 0"/>
+    <RenderMethod>nearest</RenderMethod>
+    <LegendGraphic value="/data/legends/empty.png"/>
+  </Style>
+
+<Style name="RDTstyle1">
+    <Legend fixed="true">RDTlines</Legend>
+    <FeatureInterval match="100040" matchid="#code"  fillcolor="#0000FF88" label="Decaying            "/>
+	<FeatureInterval match="100041" matchid="#code"  fillcolor="#0000FF88" label="Decaying            "/>
+	<FeatureInterval match="100042" matchid="#code"  fillcolor="#0000FF88" label="Decaying            "/>
+	<FeatureInterval match="100043" matchid="#code"  fillcolor="#0000FF88" label="Decaying            "/>
+	<FeatureInterval match="100044" matchid="#code"  fillcolor="#0000FF88" label="Decaying            "/>
+
+    <FeatureInterval match="100030" matchid="#code" fillcolor="#8737EE88" label="Maturity            "/>
+	<FeatureInterval match="100031" matchid="#code" fillcolor="#8737EE88" label="Maturity            "/>
+	<FeatureInterval match="100032" matchid="#code" fillcolor="#8737EE88" label="Maturity            "/>
+	<FeatureInterval match="100033" matchid="#code" fillcolor="#8737EE88" label="Maturity            "/>
+	<FeatureInterval match="100034" matchid="#code" fillcolor="#8737EE88" label="Maturity            "/>
+
+    <FeatureInterval match="100020" matchid="#code" fillcolor="#FF000088" label="Growing            "/>
+	<FeatureInterval match="100021" matchid="#code" fillcolor="#FF000088" label="Growing            "/>
+	<FeatureInterval match="100022" matchid="#code" fillcolor="#FF000088" label="Growing            "/>
+	<FeatureInterval match="100023" matchid="#code" fillcolor="#FF000088" label="Growing            "/>
+	<FeatureInterval match="100024" matchid="#code" fillcolor="#FF000088" label="Growing            "/>
+    <FeatureInterval match="100010" matchid="#code" fillcolor="#FF990088" label="Triggering from Split"/>
+	    <FeatureInterval match="100011" matchid="#code" fillcolor="#FF990088" label="Triggering from Split"/>
+	    <FeatureInterval match="100012" matchid="#code" fillcolor="#FF990088" label="Triggering from Split"/>
+	    <FeatureInterval match="100013" matchid="#code" fillcolor="#FF990088" label="Triggering from Split"/>
+	    <FeatureInterval match="100014" matchid="#code" fillcolor="#FF990088" label="Triggering from Split"/>
+
+    <FeatureInterval match="100000" matchid="#code" fillcolor="#FFFF0088" label="Trigering            "/>
+	<FeatureInterval match="100001" matchid="#code" fillcolor="#FFFF0088" label="Trigering            "/>
+	<FeatureInterval match="100002" matchid="#code" fillcolor="#FFFF0088" label="Trigering            "/>
+	<FeatureInterval match="100003" matchid="#code" fillcolor="#FFFF0088" label="Trigering            "/>
+	<FeatureInterval match="100004" matchid="#code" fillcolor="#FFFF0088" label="Trigering            "/>
+    <FeatureInterval match="OT" matchid="ObjectType" fillcolor="#00FF0055" label="Overshooting top"/>
+    <NameMapping name="nearest"   title="RDT CELLS Level 1"/>
+    <RenderMethod>nearest</RenderMethod>
+    <LegendGraphic value="/data/legends/empty.png"/>
+  </Style>
+
+<Style name="linesOverlayStyle">
+    <Legend fixedclasses="true" tickinterval="1000" tickround="1">RDTlines</Legend>
+    
+    <Min>0.0</Min>
+    <Max>1000</Max>
+    <RenderMethod>polyline</RenderMethod>
+    <LegendGraphic value="/data/legends/legend_RDT.png"/>
+    <NameMapping name="polyline"   title="Overlay lines" abstract="Overlay lines"/>
+    <FeatureInterval match=".*" matchid="ObjectType" bordercolor="#00000000" borderwidth="1" linecolor="#00000000" linewidth="1"/>
+    <FeatureInterval match="000040" matchid="#code"  bordercolor="#0000FF" borderwidth="2" linecolor="#0000FF" linewidth="1" />
+	<FeatureInterval match="000041" matchid="#code"  bordercolor="#0000FF" borderwidth="4" linecolor="#0000FF" linewidth="1" />
+	<FeatureInterval match="000042" matchid="#code"  bordercolor="#0000FF" borderwidth="6" linecolor="#0000FF" linewidth="1" />
+	<FeatureInterval match="000043" matchid="#code"  bordercolor="#0000FF" borderwidth="8" linecolor="#0000FF" linewidth="1" />
+	<FeatureInterval match="000044" matchid="#code"  bordercolor="#0000FF" borderwidth="10" linecolor="#0000FF" linewidth="1" />
+    <FeatureInterval match="000030" matchid="#code" bordercolor="#8737EE"  borderwidth="2"  linecolor="#8737EE" linewidth="1" />
+	<FeatureInterval match="000031" matchid="#code" bordercolor="#8737EE"  borderwidth="4"  linecolor="#8737EE" linewidth="1" />
+	<FeatureInterval match="000032" matchid="#code" bordercolor="#8737EE"  borderwidth="6"  linecolor="#8737EE" linewidth="1" />
+	<FeatureInterval match="000033" matchid="#code" bordercolor="#8737EE"  borderwidth="8"  linecolor="#8737EE" linewidth="1" />
+	<FeatureInterval match="000034" matchid="#code" bordercolor="#8737EE"  borderwidth="10"  linecolor="#8737EE" linewidth="1" />
+    <FeatureInterval match="000020" matchid="#code" bordercolor="#FF0000" borderwidth="2"  linecolor="#FF0000" linewidth="1" />
+	<FeatureInterval match="000021" matchid="#code" bordercolor="#FF0000" borderwidth="4"  linecolor="#FF0000" linewidth="1" />
+	<FeatureInterval match="000022" matchid="#code" bordercolor="#FF0000" borderwidth="6"  linecolor="#FF0000" linewidth="1" />
+	<FeatureInterval match="000023" matchid="#code" bordercolor="#FF0000" borderwidth="8"  linecolor="#FF0000" linewidth="1" />
+	<FeatureInterval match="000024" matchid="#code" bordercolor="#FF0000" borderwidth="10"  linecolor="#FF0000" linewidth="1" />
+    <FeatureInterval match="000010" matchid="#code" bordercolor="#FF9900" borderwidth="2"  linecolor="#FF9900" linewidth="1" />
+	<FeatureInterval match="000011" matchid="#code" bordercolor="#FF9900" borderwidth="4"  linecolor="#FF9900" linewidth="1" />
+	<FeatureInterval match="000012" matchid="#code" bordercolor="#FF9900" borderwidth="6"  linecolor="#FF9900" linewidth="1" />
+	<FeatureInterval match="000013" matchid="#code" bordercolor="#FF9900" borderwidth="8"  linecolor="#FF9900" linewidth="1" />
+	<FeatureInterval match="000014" matchid="#code" bordercolor="#FF9900" borderwidth="10"  linecolor="#FF9900" linewidth="1" />
+    <FeatureInterval match="000000" matchid="#code" bordercolor="#FFFF00" borderwidth="2"  linecolor="#FFFF00" linewidth="1" />
+	<FeatureInterval match="000001" matchid="#code" bordercolor="#FFFF00" borderwidth="4"  linecolor="#FFFF00" linewidth="1" />
+	<FeatureInterval match="000002" matchid="#code" bordercolor="#FFFF00" borderwidth="6"  linecolor="#FFFF00" linewidth="1" />
+	<FeatureInterval match="000003" matchid="#code" bordercolor="#FFFF00" borderwidth="8"  linecolor="#FFFF00" linewidth="1" />
+	<FeatureInterval match="000004" matchid="#code" bordercolor="#FFFF00" borderwidth="10"  linecolor="#FFFF00" linewidth="1" />
+
+   <FeatureInterval match="001540" matchid="#code"  bordercolor="#0000FFCC" borderwidth="2" linecolor="#0000FFCC" linewidth="1" />
+	<FeatureInterval match="001541" matchid="#code"  bordercolor="#0000FFCC" borderwidth="4" linecolor="#0000FFCC" linewidth="1" />
+	<FeatureInterval match="001542" matchid="#code"  bordercolor="#0000FFCC" borderwidth="6" linecolor="#0000FFCC" linewidth="1" />
+	<FeatureInterval match="001543" matchid="#code"  bordercolor="#0000FFCC" borderwidth="8" linecolor="#0000FFCC" linewidth="1" />
+	<FeatureInterval match="001544" matchid="#code"  bordercolor="#0000FFCC" borderwidth="10" linecolor="#0000FFCC" linewidth="1" />
+    <FeatureInterval match="001530" matchid="#code" bordercolor="#8737EECC" borderwidth="2"  linecolor="#8737EECC" linewidth="1" />
+	<FeatureInterval match="001531" matchid="#code" bordercolor="#8737EECC" borderwidth="4"  linecolor="#8737EECC" linewidth="1" />
+	<FeatureInterval match="001532" matchid="#code" bordercolor="#8737EECC" borderwidth="6"  linecolor="#8737EECC" linewidth="1" />
+	<FeatureInterval match="001533" matchid="#code" bordercolor="#8737EECC" borderwidth="8"  linecolor="#8737EECC" linewidth="1" />
+	<FeatureInterval match="001534" matchid="#code" bordercolor="#8737EECC" borderwidth="10"  linecolor="#8737EECC" linewidth="1" />
+    <FeatureInterval match="001520" matchid="#code" bordercolor="#FF0000CC" borderwidth="2"  linecolor="#FF0000CC" linewidth="1" />
+	<FeatureInterval match="001521" matchid="#code" bordercolor="#FF0000CC" borderwidth="4"  linecolor="#FF0000CC" linewidth="1" />
+	<FeatureInterval match="001522" matchid="#code" bordercolor="#FF0000CC" borderwidth="6"  linecolor="#FF0000CC" linewidth="1" />
+	<FeatureInterval match="001523" matchid="#code" bordercolor="#FF0000CC" borderwidth="8"  linecolor="#FF0000CC" linewidth="1" />
+	<FeatureInterval match="001524" matchid="#code" bordercolor="#FF0000CC" borderwidth="10"  linecolor="#FF0000CC" linewidth="1" />
+    <FeatureInterval match="001510" matchid="#code" bordercolor="#FF9900CC" borderwidth="2"  linecolor="#FF9900CC" linewidth="1" />
+	<FeatureInterval match="001511" matchid="#code" bordercolor="#FF9900CC" borderwidth="4"  linecolor="#FF9900CC" linewidth="1" />
+	<FeatureInterval match="001512" matchid="#code" bordercolor="#FF9900CC" borderwidth="6"  linecolor="#FF9900CC" linewidth="1" />
+	<FeatureInterval match="001513" matchid="#code" bordercolor="#FF9900CC" borderwidth="8"  linecolor="#FF9900CC" linewidth="1" />
+	<FeatureInterval match="001514" matchid="#code" bordercolor="#FF9900CC" borderwidth="10"  linecolor="#FF9900CC" linewidth="1" />
+    <FeatureInterval match="001500" matchid="#code" bordercolor="#FFFF00CC" borderwidth="2"  linecolor="#FFFF00CC" linewidth="1" />
+	<FeatureInterval match="001501" matchid="#code" bordercolor="#FFFF00CC" borderwidth="4"  linecolor="#FFFF00CC" linewidth="1" />
+	<FeatureInterval match="001502" matchid="#code" bordercolor="#FFFF00CC" borderwidth="6"  linecolor="#FFFF00CC" linewidth="1" />
+	<FeatureInterval match="001503" matchid="#code" bordercolor="#FFFF00CC" borderwidth="8"  linecolor="#FFFF00CC" linewidth="1" />
+	<FeatureInterval match="001504" matchid="#code" bordercolor="#FFFF00CC" borderwidth="10"  linecolor="#FFFF00CC" linewidth="1" />
+
+ <FeatureInterval match="003040" matchid="#code"  bordercolor="#0000FF99" borderwidth="2" linecolor="#0000FF99" linewidth="1" />
+	<FeatureInterval match="003041" matchid="#code"  bordercolor="#0000FF99" borderwidth="4" linecolor="#0000FF99" linewidth="1" />
+	<FeatureInterval match="003042" matchid="#code"  bordercolor="#0000FF99" borderwidth="6" linecolor="#0000FF99" linewidth="1" />
+	<FeatureInterval match="003043" matchid="#code"  bordercolor="#0000FF99" borderwidth="8" linecolor="#0000FF99" linewidth="1" />
+	<FeatureInterval match="003044" matchid="#code"  bordercolor="#0000FF99" borderwidth="10" linecolor="#0000FF99" linewidth="1" />
+    <FeatureInterval match="003030" matchid="#code" bordercolor="#8737EE99" borderwidth="2"  linecolor="#8737EE99" linewidth="1" />
+	<FeatureInterval match="003031" matchid="#code" bordercolor="#8737EE99" borderwidth="4"  linecolor="#8737EE99" linewidth="1" />
+	<FeatureInterval match="003032" matchid="#code" bordercolor="#8737EE99" borderwidth="6"  linecolor="#8737EE99" linewidth="1" />
+	<FeatureInterval match="003033" matchid="#code" bordercolor="#8737EE99" borderwidth="8"  linecolor="#8737EE99" linewidth="1" />
+	<FeatureInterval match="003034" matchid="#code" bordercolor="#8737EE99" borderwidth="10"  linecolor="#8737EE99" linewidth="1" />
+    <FeatureInterval match="003020" matchid="#code" bordercolor="#FF000099" borderwidth="2"  linecolor="#FF000099" linewidth="1" />
+	<FeatureInterval match="003021" matchid="#code" bordercolor="#FF000099" borderwidth="4"  linecolor="#FF000099" linewidth="1" />
+	<FeatureInterval match="003022" matchid="#code" bordercolor="#FF000099" borderwidth="6"  linecolor="#FF000099" linewidth="1" />
+	<FeatureInterval match="003023" matchid="#code" bordercolor="#FF000099" borderwidth="8"  linecolor="#FF000099" linewidth="1" />
+	<FeatureInterval match="003024" matchid="#code" bordercolor="#FF000099" borderwidth="10"  linecolor="#FF000099" linewidth="1" />
+    <FeatureInterval match="003010" matchid="#code" bordercolor="#FF990099" borderwidth="2"  linecolor="#FF990099" linewidth="1" />
+	<FeatureInterval match="003011" matchid="#code" bordercolor="#FF990099" borderwidth="4"  linecolor="#FF990099" linewidth="1" />
+	<FeatureInterval match="003012" matchid="#code" bordercolor="#FF990099" borderwidth="6"  linecolor="#FF990099" linewidth="1" />
+	<FeatureInterval match="003013" matchid="#code" bordercolor="#FF990099" borderwidth="8"  linecolor="#FF990099" linewidth="1" />
+	<FeatureInterval match="003014" matchid="#code" bordercolor="#FF990099" borderwidth="10"  linecolor="#FF990099" linewidth="1" />
+    <FeatureInterval match="003000" matchid="#code" bordercolor="#FFFF0099" borderwidth="2"  linecolor="#FFFF0099" linewidth="1" />
+	<FeatureInterval match="003001" matchid="#code" bordercolor="#FFFF0099" borderwidth="4"  linecolor="#FFFF0099" linewidth="1" />
+	<FeatureInterval match="003002" matchid="#code" bordercolor="#FFFF0099" borderwidth="6"  linecolor="#FFFF0099" linewidth="1" />
+	<FeatureInterval match="003003" matchid="#code" bordercolor="#FFFF0099" borderwidth="8"  linecolor="#FFFF0099" linewidth="1" />
+	<FeatureInterval match="003004" matchid="#code" bordercolor="#FFFF0099" borderwidth="10"  linecolor="#FFFF0099" linewidth="1" />
+
+ <FeatureInterval match="004540" matchid="#code"  bordercolor="#0000FF66" borderwidth="2" linecolor="#0000FF66" linewidth="1" />
+	<FeatureInterval match="004541" matchid="#code"  bordercolor="#0000FF66" borderwidth="4" linecolor="#0000FF66" linewidth="1" />
+	<FeatureInterval match="004542" matchid="#code"  bordercolor="#0000FF66" borderwidth="6" linecolor="#0000FF66" linewidth="1" />
+	<FeatureInterval match="004543" matchid="#code"  bordercolor="#0000FF66" borderwidth="8" linecolor="#0000FF66" linewidth="1" />
+	<FeatureInterval match="004544" matchid="#code"  bordercolor="#0000FF66" borderwidth="10" linecolor="#0000FF66" linewidth="1" />
+    <FeatureInterval match="004530" matchid="#code" bordercolor="#8737EE66" borderwidth="2"  linecolor="#8737EE66" linewidth="1" />
+	<FeatureInterval match="004531" matchid="#code" bordercolor="#8737EE66" borderwidth="4"  linecolor="#8737EE66" linewidth="1" />
+	<FeatureInterval match="004532" matchid="#code" bordercolor="#8737EE66" borderwidth="6"  linecolor="#8737EE66" linewidth="1" />
+	<FeatureInterval match="004533" matchid="#code" bordercolor="#8737EE66" borderwidth="8"  linecolor="#8737EE66" linewidth="1" />
+	<FeatureInterval match="004534" matchid="#code" bordercolor="#8737EE66" borderwidth="10"  linecolor="#8737EE66" linewidth="1" />
+    <FeatureInterval match="004520" matchid="#code" bordercolor="#FF000066" borderwidth="2"  linecolor="#FF000066" linewidth="1" />
+	<FeatureInterval match="004521" matchid="#code" bordercolor="#FF000066" borderwidth="4"  linecolor="#FF000066" linewidth="1" />
+	<FeatureInterval match="004522" matchid="#code" bordercolor="#FF000066" borderwidth="6"  linecolor="#FF000066" linewidth="1" />
+	<FeatureInterval match="004523" matchid="#code" bordercolor="#FF000066" borderwidth="8"  linecolor="#FF000066" linewidth="1" />
+	<FeatureInterval match="004524" matchid="#code" bordercolor="#FF000066" borderwidth="10"  linecolor="#FF000066" linewidth="1" />
+    <FeatureInterval match="004510" matchid="#code" bordercolor="#FF990066" borderwidth="2"  linecolor="#FF990066" linewidth="1" />
+	<FeatureInterval match="004511" matchid="#code" bordercolor="#FF990066" borderwidth="4"  linecolor="#FF990066" linewidth="1" />
+	<FeatureInterval match="004512" matchid="#code" bordercolor="#FF990066" borderwidth="6"  linecolor="#FF990066" linewidth="1" />
+	<FeatureInterval match="004513" matchid="#code" bordercolor="#FF990066" borderwidth="8"  linecolor="#FF990066" linewidth="1" />
+	<FeatureInterval match="004514" matchid="#code" bordercolor="#FF990066" borderwidth="10"  linecolor="#FF990066" linewidth="1" />
+    <FeatureInterval match="004500" matchid="#code" bordercolor="#FFFF0066" borderwidth="2"  linecolor="#FFFF0066" linewidth="1" />
+	<FeatureInterval match="004501" matchid="#code" bordercolor="#FFFF0066" borderwidth="4"  linecolor="#FFFF0066" linewidth="1" />
+	<FeatureInterval match="004502" matchid="#code" bordercolor="#FFFF0066" borderwidth="6"  linecolor="#FFFF0066" linewidth="1" />
+	<FeatureInterval match="004503" matchid="#code" bordercolor="#FFFF0066" borderwidth="8"  linecolor="#FFFF0066" linewidth="1" />
+	<FeatureInterval match="004504" matchid="#code" bordercolor="#FFFF0066" borderwidth="10"  linecolor="#FFFF0066" linewidth="1" />
+   
+ <FeatureInterval match="006040" matchid="#code"  bordercolor="#0000FF33" borderwidth="2" linecolor="#0000FF33" linewidth="1" />
+	<FeatureInterval match="006041" matchid="#code"  bordercolor="#0000FF33" borderwidth="4" linecolor="#0000FF33" linewidth="1" />
+	<FeatureInterval match="006042" matchid="#code"  bordercolor="#0000FF33" borderwidth="6" linecolor="#0000FF33" linewidth="1" />
+	<FeatureInterval match="006043" matchid="#code"  bordercolor="#0000FF33" borderwidth="8" linecolor="#0000FF33" linewidth="1" />
+	<FeatureInterval match="006044" matchid="#code"  bordercolor="#0000FF33" borderwidth="10" linecolor="#0000FF33" linewidth="1" />
+    <FeatureInterval match="006030" matchid="#code" bordercolor="#8737EE33" borderwidth="2"  linecolor="#8737EE33" linewidth="1" />
+	<FeatureInterval match="006031" matchid="#code" bordercolor="#8737EE33" borderwidth="4"  linecolor="#8737EE33" linewidth="1" />
+	<FeatureInterval match="006032" matchid="#code" bordercolor="#8737EE33" borderwidth="6"  linecolor="#8737EE33" linewidth="1" />
+	<FeatureInterval match="006033" matchid="#code" bordercolor="#8737EE33" borderwidth="8"  linecolor="#8737EE33" linewidth="1" />
+	<FeatureInterval match="006034" matchid="#code" bordercolor="#8737EE33" borderwidth="10"  linecolor="#8737EE33" linewidth="1" />
+    <FeatureInterval match="006020" matchid="#code" bordercolor="#FF000033" borderwidth="2"  linecolor="#FF000033" linewidth="1" />
+	<FeatureInterval match="006021" matchid="#code" bordercolor="#FF000033" borderwidth="4"  linecolor="#FF000033" linewidth="1" />
+	<FeatureInterval match="006022" matchid="#code" bordercolor="#FF000033" borderwidth="6"  linecolor="#FF000033" linewidth="1" />
+	<FeatureInterval match="006023" matchid="#code" bordercolor="#FF000033" borderwidth="8"  linecolor="#FF000033" linewidth="1" />
+	<FeatureInterval match="006024" matchid="#code" bordercolor="#FF000033" borderwidth="10"  linecolor="#FF000033" linewidth="1" />
+    <FeatureInterval match="006010" matchid="#code" bordercolor="#FF990033" borderwidth="2"  linecolor="#FF990033" linewidth="1" />
+	<FeatureInterval match="006011" matchid="#code" bordercolor="#FF990033" borderwidth="4"  linecolor="#FF990033" linewidth="1" />
+	<FeatureInterval match="006012" matchid="#code" bordercolor="#FF990033" borderwidth="6"  linecolor="#FF990033" linewidth="1" />
+	<FeatureInterval match="006013" matchid="#code" bordercolor="#FF990033" borderwidth="8"  linecolor="#FF990033" linewidth="1" />
+	<FeatureInterval match="006014" matchid="#code" bordercolor="#FF990033" borderwidth="10"  linecolor="#FF990033" linewidth="1" />
+    <FeatureInterval match="006000" matchid="#code" bordercolor="#FFFF0033" borderwidth="2"  linecolor="#FFFF0033" linewidth="1" />
+	<FeatureInterval match="006001" matchid="#code" bordercolor="#FFFF0033" borderwidth="4"  linecolor="#FFFF0033" linewidth="1" />
+	<FeatureInterval match="006002" matchid="#code" bordercolor="#FFFF0033" borderwidth="6"  linecolor="#FFFF0033" linewidth="1" />
+	<FeatureInterval match="006003" matchid="#code" bordercolor="#FFFF0033" borderwidth="8"  linecolor="#FFFF0033" linewidth="1" />
+	<FeatureInterval match="006004" matchid="#code" bordercolor="#FFFF0033" borderwidth="10"  linecolor="#FFFF0033" linewidth="1" />
+
+    <FeatureInterval match="PastCGTraj" matchid="ObjectType" bordercolor="#FFFF00" borderwidth="3" linecolor="#FFFF00" linewidth="1"/>
+    <FeatureInterval match="FcstCGTraj" matchid="ObjectType" bordercolor="#000000" borderwidth="3" linecolor="#000000" linewidth="1"/>
+    <FeatureInterval match="OT" matchid="ObjectType" bordercolor="#00FF00" borderwidth="3" linecolor="#00FF00" linewidth="1"/>
+  </Style>
+
+<!--filled layers-->
+
+ <Layer type="database">
+    <Title>Rapid Develloping Thunderstorms level0</Title>
+    <Name>RDT0</Name>
+    <FilePath filter="^.*\.geojson$">/data/adaguc-autowms/RDT/LAST</FilePath>
+    <Variable>features</Variable>
+    <Styles>RDTstyle0</Styles>
+  </Layer>
+
+  <Layer type="database">
+    <Title>Rapid Develloping Thunderstorms level1</Title>
+    <Name>RDT1</Name>
+    <FilePath filter="^.*\.geojson$">/data/adaguc-autowms/RDT/LAST</FilePath>
+    <Variable>features</Variable>
+    <Styles>RDTstyle1</Styles>
+  </Layer>
+
+<!-- end of  filled layer -->
+<!-- lines layer -->
+<Layer>
+      <Name>linesOverlayLayer</Name>
+      <Title>linesOverlayLayer</Title>
+      <FilePath filter="^.*\.geojson$">/data/adaguc-autowms/RDT/LAST</FilePath>
+      <Variable>features</Variable>
+      <Styles>linesOverlayStyle</Styles>
+  </Layer>
+ 
+<!-- end of  lines layer -->
+  <!-- End of configuration /-->
+</Configuration>

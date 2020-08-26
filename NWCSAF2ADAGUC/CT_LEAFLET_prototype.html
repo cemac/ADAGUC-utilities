@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Leaflet CT ingestion prototype Demo</title>
+	 <meta charset="utf-8">
+	 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
+	       
+         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css" />
+	 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-timedimension@1.1.1/dist/leaflet.timedimension.control.min.css" />
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/1.4.2/Control.FullScreen.min.css" />
+	 <link rel="stylesheet" href="css/style.css" />
+	 <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+ 	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
+ 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/iso8601-js-period@0.2.1/iso8601.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/leaflet-timedimension@1.1.1/dist/leaflet.timedimension.min.js"></script>
+	<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/leaflet.nontiledlayer@1.0.7/dist/NonTiledLayer.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	 <style>
+	   html, body, #map {
+	      height:100%;
+	      width:100%;
+	      padding:0px;
+	      margin:0px;
+	   } 
+   	</style>
+   
+    </head>
+    <body>
+        
+       
+       
+ 
+<div id="mapid" style="width: 100%; height: 100%;"></div>   
+<script> 
+var latitude_GEO_CT_ct = 0.0;
+var longitude_GEO_CT_ct = 0.0;
+var popup = L.popup();
+var URL2_GEO_CT_ct = '';
+
+var iniDate_GEO_CT_ct = new Date();
+iniDate_GEO_CT_ct.setUTCHours(iniDate_GEO_CT_ct.getUTCHours()-4);
+var rounded_minutes_GEO_CT_ct = Math.trunc((iniDate_GEO_CT_ct.getUTCMinutes())/15)*15
+iniDate_GEO_CT_ct.setUTCMinutes(rounded_minutes_GEO_CT_ct,0,0);
+
+var endDate_GEO_CT_ct = new Date();
+endDate_GEO_CT_ct.setUTCMinutes(rounded_minutes_GEO_CT_ct,0,0);
+
+/*
+Calculating the actual end time
+*/ 
+
+
+var URL_GEO_CT_ct ="http://nwcsaf-adaguc-proofs.aemet.es/adaguc-services//wms?DATASET=GEO&SERVICE=WMS&REQUEST=GetPointValue&VERSION=1.1.1&SRS=EPSG:4326&QUERY_LAYERS=CT_ct&X=25.6&Y=52.0&INFO_FORMAT=application/json&time=" + iniDate_GEO_CT_ct.toISOString() + "/" + endDate_GEO_CT_ct.toISOString()
+var json_GEO_CT_ct= '';
+var actual_end_date_GEO_CT_ct = '';
+var previous_end_date_GEO_CT_ct = '';
+
+
+function refresh_end_time(){
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = function() {
+	    if (req.readyState === 4) {
+		var response = req.responseText;
+		json_GEO_CT_ct= JSON.parse(response);
+		var time_array = Object.keys(json_GEO_CT_ct[0]['data']);
+		actual_end_date_GEO_CT_ct = time_array[time_array.length -1];
+	
+	       
+	    }
+	};
+	req.open('GET', URL_GEO_CT_ct, false);
+	req.send(null);
+	console.log("refresh");
+	console.log(URL_GEO_CT_ct);
+	console.log(actual_end_date_GEO_CT_ct);
+	};
+
+refresh_end_time();
+previous_end_date_GEO_CT_ct = actual_end_date_GEO_CT_ct;
+var view_time_GEO_CT_ct = actual_end_date_GEO_CT_ct;
+
+// end of initialization part
+
+  
+var mymap_GEO_CT_ct = L.map('mapid', {
+    zoom: 7,
+    fullscreenControl: {
+        pseudoFullscreen: false
+	    },
+    center: [40.0, -3.50],
+    timeDimension: true,
+    timeDimensionControl: true,
+    timeDimensionOptions: {
+        timeInterval: "PT225M/" + actual_end_date_GEO_CT_ct,
+        period: "PT15M"
+    },
+    timeDimensionControlOptions: {
+        timeSliderDragUpdate: true,
+        loopButton: true,
+       
+        playerOptions: {
+            transitionTime: 4000
+            }}
+});
+
+
+mymap_GEO_CT_ct.setView([40, -3.50], 6);
+
+console.log(mymap_GEO_CT_ct)
+
+L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://www.nwcsaf.org">NWCSAF</a>, Displayed through: <a href="http://adaguc.knmi.nl/">ADAGUC</a>',
+maxZoom: 18
+}).addTo(mymap_GEO_CT_ct);
+
+var WMS_GEO_CT_ct = "http://nwcsaf-adaguc-proofs.aemet.es/adaguc-services//adagucserver?dataset=GEO&"
+var Layer_GEO_CT_ct = L.tileLayer.wms(WMS_GEO_CT_ct, {
+    layers: 'CT_ct',
+    format: 'image/png',
+    transparent: true,
+    crs: L.CRS.EPSG3857
+});
+var TimeLayer_GEO_CT_ct = L.timeDimension.layer.wms(Layer_GEO_CT_ct,{cacheBackward: 2, cacheForward: 2});
+TimeLayer_GEO_CT_ct.addTo(mymap_GEO_CT_ct);
+
+//adquisition data part
+
+var URL0_GEO_CT_ct ="http://nwcsaf-adaguc-proofs.aemet.es/adaguc-services//wms?DATASET=GEO&SERVICE=WMS&REQUEST=GetPointValue&VERSION=1.1.1&SRS=EPSG:4326&QUERY_LAYERS=CT_ct&X="
+var URL1_GEO_CT_ct ="&INFO_FORMAT=application/json&time=" + view_time_GEO_CT_ct + "/" + view_time_GEO_CT_ct;
+var json1_GEO_CT_ct =''
+
+var req1 = new XMLHttpRequest();
+    req1.onreadystatechange = function() {
+	    if (req1.readyState === 4) {
+		var response = req1.responseText;
+		json1_GEO_CT_ct = JSON.parse(response);
+	    }
+	};
+
+function readData(){
+		URL2_GEO_CT_ct = URL0_GEO_CT_ct + longitude_GEO_CT_ct.toString() + "&Y=" + latitude_GEO_CT_ct.toString() + URL1_GEO_CT_ct;
+		req1.open('GET', URL2_GEO_CT_ct, false);
+    		req1.send(null);
+		console.log("readata");	
+		return json1_GEO_CT_ct[0]['data'][view_time_GEO_CT_ct]	
+			}
+
+//click
+function onMapClick(e) {
+    
+    latitude_GEO_CT_ct = e.latlng.lat;
+    longitude_GEO_CT_ct = e.latlng.lng;
+    
+    data = readData();
+    console.log(data);
+	popup
+        .setLatLng(e.latlng)
+        .setContent(data)
+        .openOn(mymap_GEO_CT_ct);
+    
+   
+}
+
+mymap_GEO_CT_ct.on('click', onMapClick);
+// map time view change
+
+function onMapTimeLoad(e) {
+    var currentDate = new Date(0);
+    var currentTime = mymap_GEO_CT_ct.timeDimension.getCurrentTime() / 1000;
+    currentDate.setUTCSeconds(currentTime);
+    view_time_GEO_CT_ct = currentDate.toISOString().slice(0,-5) + "Z";
+    URL1_GEO_CT_ct ="&INFO_FORMAT=application/json&time=" + view_time_GEO_CT_ct + "/" + view_time_GEO_CT_ct;
+    if (popup.isOpen()){
+	    data = readData();
+	    popup.setContent(data);
+    };
+};
+
+mymap_GEO_CT_ct.timeDimension.on('timeload', onMapTimeLoad);
+
+/*
+Legends part
+*/
+
+var Legend_GEO_CT_ct = L.control({
+    position: 'bottomright'
+});
+Legend_GEO_CT_ct.onAdd = function(mymap_GEO_CT_ct) {
+    var src = "http://nwcsaf-adaguc-proofs.aemet.es/adaguc-services//wms?DATASET=GEO&SERVICE=WMS&&version=1.1.1&service=WMS&request=GetLegendGraphic&layer=CT_ct&format=image/png&STYLE=ct/nearest";
+    var div = L.DomUtil.create('div', 'info legend');
+    div.style.width = '305px';
+    div.style.height = '400px';
+    div.style.opacity="0.7";
+    div.style['background-image'] = 'url(' + src + ')';
+    return div;
+};
+Legend_GEO_CT_ct.addTo(mymap_GEO_CT_ct);
+
+
+
+var logoLegend = L.control({
+    position: 'topright'
+});
+
+logoLegend.onAdd = function(mymap_GEO_CT_ct) {
+    var src = "http://www.nwcsaf.org/aemethd-theme/images/NWCSAF_Name_Colour.png";
+    var div = L.DomUtil.create('div', 'info legend');
+    div.style.width = '265px';
+    div.style.height = '105px';
+    div.style.opacity="0.90";
+    div.style['background-image'] = 'url(' + src + ')';
+    return div;
+};
+logoLegend.addTo(mymap_GEO_CT_ct);
+
+
+
+
+
+
+
+
+
+/*
+Timer part
+
+*/
+
+var timer_var_GEO_CT_ct = setInterval(Timer_GEO_CT_ct, 60000);
+
+function Timer_GEO_CT_ct() {
+	iniDate_GEO_CT_ct = new Date();
+	iniDate_GEO_CT_ct.setUTCHours(iniDate_GEO_CT_ct.getUTCHours()-4);
+	rounded_minutes_GEO_CT_ct = Math.trunc((iniDate_GEO_CT_ct.getUTCMinutes())/15)*15
+	iniDate_GEO_CT_ct.setUTCMinutes(rounded_minutes_GEO_CT_ct,0,0);
+
+	endDate_GEO_CT_ct = new Date();
+	endDate_GEO_CT_ct.setUTCMinutes(rounded_minutes_GEO_CT_ct,0,0);	
+
+	URL_GEO_CT_ct ="http://nwcsaf-adaguc-proofs.aemet.es/adaguc-services//wms?DATASET=GEO&SERVICE=WMS&REQUEST=GetPointValue&VERSION=1.1.1&SRS=EPSG:4326&QUERY_LAYERS=CT_ct&X=25.6&Y=52.0&INFO_FORMAT=application/json&time=" + iniDate_GEO_CT_ct.toISOString() + "/" + endDate_GEO_CT_ct.toISOString();
+	refresh_end_time();
+	console.log(previous_end_date_GEO_CT_ct);
+	console.log(actual_end_date_GEO_CT_ct);
+	if (actual_end_date_GEO_CT_ct != previous_end_date_GEO_CT_ct) {
+				location.reload(true);
+				console.log("page reloaded");
+				};
+	
+}; 
+
+</script> 
+</body>
+</html>

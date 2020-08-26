@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+   crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+   integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+   crossorigin=""></script>
+    <script>L_PREFER_CANVAS = false; L_NO_TOUCH = false; L_DISABLE_3D = false;</script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
+    
+   
+
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <style> #map_1 {
+                position : relative;
+                width : 100.0%;
+                height: 100.0%;
+                left: 0.0%;
+                top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="nwcsaf-map" id="map_1" ></div>
+        
+</body>
+<script>    
+
+ 
+                        
+  var map_1 = L.map(
+                                  'map_1',
+                                  {center: [37.0,-10.0],
+                                  zoom: 6,
+                                  maxBounds: null,
+                                  "interactive": true,
+                                  layers: [],
+                                  worldCopyJump: false,
+                                  crs: L.CRS.EPSG3857
+                                 });
+        
+        
+var tile_layer_1 = L.tileLayer(
+                'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                {
+  "attribution": null,
+  "detectRetina": true,
+  "maxZoom": 18,
+  "minZoom": 3,
+  "noWrap": false,
+  "subdomains": "abc"
+}
+                );
+
+map_1.addLayer(tile_layer_1);  
+ 
+// replace "toner-lite" with "toner", "terrain" or "watercolor"
+var tile_layer_2 = new L.StamenTileLayer("toner-lite");
+
+map_1.addLayer(tile_layer_2);       
+  
+function onEachFeature(feature, layer) {
+    // does this feature have a property named popupContent?
+    if (feature.properties && feature.properties.popupContent) {
+        layer.bindPopup(feature.properties.popupContent);
+    }
+}
+
+
+ 
+var celulas = L.geoJSON({"type": "Feature"});
+
+
+map_1.addLayer(celulas); 
+    
+   
+///
+
+function getGolor(feature){switch (feature.properties.Status) {
+			                                case "Triggering": return  "#ffff00";
+			                                case "Triggering from Split":   return "#ff9900";
+			                                case "Growing":   return "#ff0000";
+			                                case "Maturity":   return "#cc00ff";
+			                                case "Decaying":   return "#0000ff";
+							  };
+						switch (feature.properties.ObjectType) {
+				                        case "PastCGTraj":   return  "#ffff00";
+							case "FcstCGTraj":   return "#000000";
+							case "OT"        :   return "#00FF00";
+				                          }
+			};
+function getWidth(feature){
+			switch (feature.properties.ObjectType) {
+				                        case "cell-015":  {switch (feature.properties.severityIntensity) {
+				                        				case "Not defined": return 2;
+			                                				case "Low":   return  4;
+			                                				case "Moderate":   return 6;
+			                                				case "High":   return 8;
+			                                				case "Very High":   return 10;
+											default: return 1;
+				                          		 						};
+
+							
+										};
+			                                case "cell-030":  {switch (feature.properties.severityIntensity) {
+				                        				case "Not defined": return 2;
+			                                				case "Low":   return  4;
+			                                				case "Moderate":   return 6;
+			                                				case "High":   return 8;
+			                                				case "Very High":   return 10;
+											default: return 1;
+				                          		 						};
+
+							
+										};
+			                                case "cell-045":   {switch (feature.properties.severityIntensity) {
+				                        				case "Not defined": return 2;
+			                                				case "Low":   return  4;
+			                                				case "Moderate":   return 6;
+			                                				case "High":   return 8;
+			                                				case "Very High":   return 10;
+											default: return 1;
+				                          		 						};
+
+							
+										};
+			                                case "cell-060":   {switch (feature.properties.severityIntensity) {
+				                        				case "Not defined": return 2;
+			                                				case "Low":   return  4;
+			                                				case "Moderate":   return 6;
+			                                				case "High":   return 8;
+			                                				case "Very High":   return 10;
+											default: return 1;
+				                          		 						};
+
+							
+										};
+							case "cell-000":   	{switch (feature.properties.severityIntensity) {
+				                        				case "Not defined": return 2;
+			                                				case "Low":   return  4;
+			                                				case "Moderate":   return 6;
+			                                				case "High":   return 8;
+			                                				case "Very High":   return 10;
+											default: return 1;
+				                          		 						};
+
+							
+										};
+							case "PastCGTraj":   return  2;
+							case "FcstCGTraj":   return 2;
+							case "OT"        :   return 8;	
+				                          	};
+			
+				                          		 				
+
+			};
+
+function getFillOpacity(feature){switch (feature.properties.ObjectType) {
+				                        case "cell-000": return 0.5;
+			                                case "cell-015":   return 0;
+			                                case "cell-030":   return 0;
+			                                case "cell-045":   return 0;
+			                                case "cell-060":   return 0;
+							case "OT"      :   return 0;
+				                          }
+			};
+function getOpacity(feature){switch (feature.properties.ObjectType) {
+				                        case "cell-000": return 1;
+			                                case "cell-015":   return 0.75;
+			                                case "cell-030":   return 0.65;
+			                                case "cell-045":   return 0.55;
+			                                case "cell-060":   return 0.45;
+							case "OT"      :   return 1;
+				                          }
+			};
+function addDataToLayer(data, map) {
+    var dataLayer = L.geoJson(data,
+                             {onEachFeature: onEachFeature,
+                                        style: function(feature){                           
+						
+						   return {color:getGolor(feature), opacity: getOpacity(feature), fillOpacity: getFillOpacity(feature), weight:getWidth(feature)};
+				                          
+						
+                                        }
+				
+
+                                    }
+                             
+                            
+                             
+                             );
+   
+    dataLayer.addTo(map);
+}
+
+$.getJSON("./debug_geoJSON/rdt.geojson", function(data) {addDataToLayer(data, celulas)});
+    
+L.Control.Watermark = L.Control.extend({
+    onAdd: function(map) {
+        var img = L.DomUtil.create('img');
+
+        img.src = './legend/legend_RDT.png';
+        img.style.width = '1200px';
+
+        return img;
+    },
+
+    onRemove: function(map) {
+        // Nothing to do here
+    }
+});
+
+L.control.watermark = function(opts) {
+    return new L.Control.Watermark(opts);
+}
+
+L.control.watermark({ position: 'bottomright' }).addTo(map_1);
+
+ 
+            L.control.layers(
+                {"Stamen":tile_layer_2, "openStreet":tile_layer_1},
+                {"celulas":celulas}, {collapsed: false}).addTo(map_1);        
+        
+</script>

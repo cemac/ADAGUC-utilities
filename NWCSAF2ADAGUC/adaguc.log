@@ -1,0 +1,49 @@
+[D: CRequest.cpp, 117 in CRequest]                                 Dataset name based on passed configfile is [HRW]
+[D: CAutoResource.cpp, 81 in CAutoResource]                        Found dataset /data/adaguc-datasets//HRW.xml
+[D: CServerParams.cpp, 428 in CServerParams]                       Warning: No OnlineResources configured. Unable to get from config OnlineResource or from environment ADAGUC_ONLINERESOURCE
+[D: CDBFileScanner.cpp, 955 in CDBFileScanner]                     *** Starting update layer 'baselayer' ***
+[D: CDBFileScanner.cpp, 957 in CDBFileScanner]                     Using path [/src/KNMI/adaguc-server/data/datasets/countries.geojson], filter [] and tailpath []
+[D: CCDFGeoJSONIO.cpp, 36 in GeoJSONReader]                        New CDFGeoJSONReader
+[D: CConvertGeoJSON.cpp, 520 in CConvertGeoJSON]                   convertGeoJSONHeader
+[D: CConvertGeoJSON.cpp, 522 in CConvertGeoJSON]                   Using CConvertGeoJSON.cpp
+[D: CConvertGeoJSON.cpp, 534 in CConvertGeoJSON]                   JSON result: 6f7fa5d0
+[D: CConvertGeoJSON.cpp, 937 in CConvertGeoJSON]                   type found
+[D: CConvertGeoJSON.cpp, 941 in CConvertGeoJSON]                   type: FeatureCollection
+
+[D: CConvertGeoJSON.cpp, 956 in CConvertGeoJSON]                   features found
+[D: CConvertGeoJSON.cpp, 1182 in CConvertGeoJSON]                  BBOX: -180.000000,-90.000000,180.000000,83.645130
+[D: CConvertGeoJSON.cpp, 752 in CConvertGeoJSON]                   type found
+[D: CConvertGeoJSON.cpp, 756 in CConvertGeoJSON]                   type: FeatureCollection
+
+[D: CConvertGeoJSON.cpp, 551 in CConvertGeoJSON]                   addCDFInfo
+[D: CConvertGeoJSON.cpp, 593 in CConvertGeoJSON]                   timeDim: 0
+[D: CConvertGeoJSON.cpp, 595 in CConvertGeoJSON]                   elevationDim: 0
+[D: CConvertGeoJSON.cpp, 602 in CConvertGeoJSON]                   CellsizeX: 180.000000
+[D: CConvertGeoJSON.cpp, 671 in CConvertGeoJSON]                   Creating dim features 177
+[D: CConvertGeoJSON.cpp, 568 in CConvertGeoJSON]                   CConvertGeoJSON::convertGeoJSONHeader() done
+[D: CDBFileScanner.cpp, 118 in CDBFileScanner]                     Checking dim [none]
+[D: CDBFileScanner.cpp, 367 in CDBFileScanner]                     Found dimension 0 with name none of type 1, istimedim: [0]
+[D: CDBFileScanner.cpp, 389 in CDBFileScanner]                     Marking table done for dim 'none' with table 't20190912t143944117_jdsewu5twla5uaaflts3'.
+[D: CDBFileScanner.cpp, 396 in CDBFileScanner]                     Found 1 files
+[D: CDBFileScanner.cpp, 848 in CDBFileScanner]                     The database contains 1 files
+[D: CDBFileScanner.cpp, 858 in CDBFileScanner]                     Comparing lists
+[D: CDBFileScanner.cpp, 861 in CDBFileScanner]                     Found 0 files in DB which are missing
+[D: CDBFileScanner.cpp, 1031 in CDBFileScanner]                    *** Finished update layer 'baselayer' ***
+
+[D: CDBFileScanner.cpp, 955 in CDBFileScanner]                     *** Starting update layer 'overlay' ***
+[D: CDBFileScanner.cpp, 957 in CDBFileScanner]                     Using path [/src/KNMI/adaguc-server/data/datasets/countries.geojson], filter [] and tailpath []
+[D: CDBFileScanner.cpp, 118 in CDBFileScanner]                     Checking dim [none]
+[D: CDBFileScanner.cpp, 367 in CDBFileScanner]                     Found dimension 0 with name none of type 1, istimedim: [0]
+[D: CDBFileScanner.cpp, 386 in CDBFileScanner]                     Skipping dimension 'none' with table 't20190912t143944117_jdsewu5twla5uaaflts3': already scanned.
+[D: CDBFileScanner.cpp, 396 in CDBFileScanner]                     Found 1 files
+[D: CDBFileScanner.cpp, 425 in CDBFileScanner]                     Assuming [none] done
+[D: CDBFileScanner.cpp, 1031 in CDBFileScanner]                    *** Finished update layer 'overlay' ***
+
+[D: CDBFileScanner.cpp, 955 in CDBFileScanner]                     *** Starting update layer 'windHRW' ***
+[D: CDBFileScanner.cpp, 957 in CDBFileScanner]                     Using path [/data/adaguc-autowms/HRW/HRW], filter [^.*\.csv$] and tailpath []
+[D: CDBFileScanner.cpp, 1090 in CDBFileScanner]                    Reading directory /data/adaguc-autowms/HRW/HRW with filter ^.*\.csv$
+[D: CDirReader.cpp, 67 in CDirReader]                              Doing recursive directory scan for [/data/adaguc-autowms/HRW/HRW]
+[D: CDBFileScanner.cpp, 1103 in CDBFileScanner]                    Found 0 file(s)
+[W: CDBFileScanner.cpp, 994 in CDBFileScanner]                     No files found for layer windHRW
+[D: CRequest.cpp, 3442 in CRequest]                                ***** Finished DB Update *****
+[D: CDirReader.cpp, 394 in CCachedDirReader]                       Cleaningup dirReaders
