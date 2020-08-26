@@ -62,7 +62,7 @@ def lock_file(file_name):
         product_name = 'HRW'
     else:
         product_name = file_name.split(os.sep)[-1].split('_')[2]
-    lock = '/data/adaguc-autowms' + os.sep + product_name  + os.sep + product_name + '.locked'
+    lock = './data/adaguc-autowms' + os.sep + product_name  + os.sep + product_name + '.locked'
 
     return lock
 
