@@ -128,7 +128,7 @@ def cellToFeature(dataSet, numCell, fct, conf, DecTime, level=0):
                        + timedelta(seconds=(60 * int(fct) +
                                             DecTime[numCell])))
 
-    content = datetime_object.time().isoformat() + newItem + ''' level''' + equal + str(level) + newItem
+    content = datetime_object.time().isoformat() + newItem + '''level''' + equal + str(level) + newItem
 
     for key in configuration.keys():
         if configuration[key] in dataSet.variables.keys():
