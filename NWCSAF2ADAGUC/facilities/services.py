@@ -54,7 +54,7 @@ def wait_until_closed(inputFile):
 
     return
 
-def lock_file(file_name):
+def lock_file(file_name, conf=None):
 
     if 'RDT-CW' in file_name:
         product_name = 'RDT-CW'
@@ -62,11 +62,15 @@ def lock_file(file_name):
         product_name = 'HRW'
     else:
         product_name = file_name.split(os.sep)[-1].split('_')[2]
-    lock = './data/adaguc-autowms' + os.sep + product_name  + os.sep + product_name + '.locked'
+    if conf is not None:
+        lock_dir = conf['PATH']['tempDir']
+    else:
+        lock_dir = '/data/adaguc-autowms'
+    lock = lock_dir + os.sep + product_name  + os.sep + product_name + '.locked'
 
     return lock
 
-def secure_copy(source, dest):
+def secure_copy(source, dest, conf=None):
     '''
     copies source to dest and generates a lock that indicates that the copy is still ongoing, when the copy is finished
     the lock is removed.
@@ -78,7 +82,7 @@ def secure_copy(source, dest):
     if not os.path.exists(source):
         return
     os.makedirs(os.path.dirname(dest), exist_ok=True)
-    lock = lock_file(dest)
+    lock = lock_file(dest, conf)
 
     locking_file = open(lock, 'w')
     locking_file.close()
@@ -95,7 +99,7 @@ def secure_copy(source, dest):
     return None
 
 
-def secure_move(source, dest):
+def secure_move(source, dest, conf=None):
     '''
     moves source to dest and generates a lock indicating that the moving is still ongoing, when the process
      is finished the lock is removed.
@@ -107,7 +111,7 @@ def secure_move(source, dest):
     if not os.path.exists(source):
         return
     os.makedirs(os.path.dirname(dest), exist_ok=True)
-    lock = lock_file(dest)
+    lock = lock_file(dest, conf)
     #print(lock,"<<<<<")
     locking_file = open(lock, 'w')
     locking_file.close()
@@ -123,13 +127,13 @@ def secure_move(source, dest):
     return None
 
 
-def is_locked(file_name):
+def is_locked(file_name, conf=None):
     '''
     check if a file is locked
     :param file_name: a string with the file name and the path
     :return: boolean telling if the file is locked or not
     '''
-    lock = lock_file(file_name)
+    lock = lock_file(file_name, conf)
 
     if os.path.exists(lock):
         locked = True
@@ -138,14 +142,14 @@ def is_locked(file_name):
     return locked
 
 
-def wait_until_unlocked(file_name):
+def wait_until_unlocked(file_name, conf=None):
     '''
     Waits until the file is unlocked
     :param file_name: a string with the file name and the path
     :return: None
     '''
 
-    while is_locked(file_name):
+    while is_locked(file_name, conf):
         time.sleep(1)
 
     return None

@@ -615,9 +615,9 @@ def process_one_set(rdtFile, conf, underTM=False):
         # copying to autowms
         #print('inside')
         time.sleep(0.1)
-        srv.secure_move(tempFile, outFile)
+        srv.secure_move(tempFile, outFile, conf)
         time.sleep(0.1)
-        srv.wait_until_unlocked(outFile)
+        srv.wait_until_unlocked(outFile, conf)
         if not underTM:
             print('Wrote: ' + outFile)
 
