@@ -592,7 +592,10 @@ def process_one_set(rdtFile, conf, underTM=False):
                         srv.wait_until_closed(nextrdtFile)
                         break
                     time.sleep(0.1)
-
+            else:
+                if not os.path.isfile(nextrdtFile):
+                    print('File not found: ', nextrdtFile)
+                    continue
 
             dataSet = netCDF4.Dataset(nextrdtFile, 'r')
             text = text + rdtDataSetToJson(dataSet, conf, DecTime, fct=fct) + ','
