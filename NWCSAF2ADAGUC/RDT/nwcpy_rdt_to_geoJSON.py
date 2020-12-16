@@ -223,13 +223,16 @@ def plotPastTrajCG(dataSet, numCell, conf):
         number_masked = 0
     number_of_vertex = len(dataSet.variables['LonTrajCellCG'][numCell, :]) - number_masked
 
-    for vertex in range(number_of_vertex):
+    # A valid GeoJSON LineString should have two or more points
+    if number_of_vertex >= 2:
+        for vertex in range(number_of_vertex):
 
-        text = (text + "[" + str(dataSet.variables['LonTrajCellCG'][numCell, :][vertex])
-                + ","
-                + str(dataSet.variables['LatTrajCellCG'][numCell, :][vertex])
-                + "],")
-    text = text[:-1]
+            text = (text + "[" + str(dataSet.variables['LonTrajCellCG'][numCell, :][vertex])
+                    + ","
+                    + str(dataSet.variables['LatTrajCellCG'][numCell, :][vertex])
+                    + "],")
+        text = text[:-1]
+
     text = (text + """]
                       }
                  },""")
