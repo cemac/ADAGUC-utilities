@@ -271,7 +271,7 @@ def plotFcstTrajCG(dataSet, numCell, conf):
     lon1 = dataSet.variables['LonG'][numCell][0]
     azi1 = dataSet.variables['MvtDirection'][numCell]
     s12 = dataSet.variables['MvtSpeed'][numCell] * 60 * 15
-    if math.isnan(azi1) or math.isnan(s12):
+    if np.isnan(azi1) or np.isnan(s12):
         return ''
     black_line = geod.Direct(lat1, lon1, azi1, s12)
     # writing the first and last points
@@ -309,7 +309,7 @@ def plotOT(dataSet, conf):
         return ''
     number_of_points = len(dataSet.variables['LatPixOT'])
     for num in range(number_of_points):
-        if not math.isnan(dataSet.variables['LonPixOT'][num]):
+        if not np.isnan(dataSet.variables['LonPixOT'][num]):
             configuration = conf['OT']
             # adding the proprieties
             content = ""
