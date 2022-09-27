@@ -385,7 +385,11 @@ def rdtDataSetToJson(dataSet, conf, DecTime, fct='000'):
 
     # adding the overshooting tops
     if 'NumIdCellOT' in dataSet.variables:
-            text = text + plotOT(dataSet, conf)
+            text_OT = plotOT(dataSet, conf)
+            if len(text_OT):
+                text = text + text_OT
+            else:
+                text = text[:-1]
     else:
             text = text[:-1]
     return text
